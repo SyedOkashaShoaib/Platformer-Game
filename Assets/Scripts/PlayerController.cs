@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && isGrounded)
         {
             jumpRequested = true;
+            anim.SetTrigger("Jump");
         }
         // Through this Update is listening to the keystrokes of the user. 
         /*
