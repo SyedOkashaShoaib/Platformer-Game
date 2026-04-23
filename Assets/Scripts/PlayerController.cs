@@ -33,11 +33,19 @@ public class PlayerController : MonoBehaviour
     that he comes down fast. */
     [SerializeField] private float defaultGravityScale;
 
-    [SerializeField] private float dashVelocity = 14f;
-    [SerializeField] private float dashCooldown = 1f;
-    [SerializeField] private float dashTime = 0.2f;
+
+    [SerializeField] private float dashVelocity = 70f;
+    [SerializeField] private float dashCooldown = 0.2f;
+    [SerializeField] private float dashTime = 0.35f;
     private bool canDash = true;
     private bool isDashing = false;
+
+    [SerializeField] private float jumpBufferTime = 0.2f;
+    private float jumpBufferCounter;
+
+    [SerializeField] private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter = 0;
+
     private Rigidbody2D rb;
     private Animator anim;
     private float currentSpeed;
@@ -85,10 +93,35 @@ public class PlayerController : MonoBehaviour
         {
             Flip(); //same logic
         }
-        if (Input.GetKeyDown(KeyCode.Z) && isGrounded)
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+
+            if (!jumpRequested && rb.linearVelocity.y <= 0.1f)
+            {
+                anim.ResetTrigger("Jump"); //idk what this line does lol. 
+            }
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            jumpBufferCounter = jumpBufferTime;
+
+
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
             jumpRequested = true;
             anim.SetTrigger("Jump");
+            jumpBufferCounter = 0;
+            coyoteTimeCounter = 0;
         }
         // Through this Update is listening to the keystrokes of the user. 
         /*
