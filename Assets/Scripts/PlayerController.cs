@@ -34,11 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float defaultGravityScale;
 
 
-    [SerializeField] private float dashVelocity = 70f;
-    [SerializeField] private float dashCooldown = 0.2f;
-    [SerializeField] private float dashTime = 0.35f;
-    private bool canDash = true;
-    private bool isDashing = false;
+
 
     [SerializeField] private float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
@@ -65,10 +61,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (isDashing)
-        {
-            return;
-        }
+
         //update is an Event Function that comes from MonoBehaviour. 
         /*
         we dont use override for Event Functions even though we are technically overriding the Update
@@ -131,22 +124,9 @@ public class PlayerController : MonoBehaviour
         You dont use Axes for jumping, because as long as the user presses w, or up arrow, the character will
         keep flying. :)
         */
-        if (Input.GetKeyDown(KeyCode.C) && canDash)
-        {
-            /*
-            Coroutines are very simple. They are simply functions with a yield statement inside.
+        
+ 
 
-A yield statement stops processing at that point and waits until the next frame before continuing from where it was.
-
-Yield WaitForSeconds does the same thing but waits for a certain number of seconds before continuing.
-
-Where do you use them? Anywhere this functionality proves useful. Imagine you need to generate 1000 objects and doing them all in one frame causes a stutter. Simply create a for loop and put a yield inside it and only one object is created per frame.
-
-Maybe you want to regenerate shields, but instead of doing it once per frame, you can create a coroutine with 'Yield WaitForSeconds(0.25)' and it will only happen once every quarter second.
-
-Need to test something is happening but you don't need to test it every frame? Create a coroutine that checks once per second*/
-            StartCoroutine(Dash());
-        }
         if (rb.linearVelocity.y < 0.1f)
         {
             rb.gravityScale = defaultGravityScale * fallMultiplier;
@@ -170,10 +150,7 @@ Need to test something is happening but you don't need to test it every frame? C
     }
     void FixedUpdate()
     {
-        if (isDashing)
-        {
-            return;
-        }
+
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
         if (jumpRequested)
         {
@@ -195,22 +172,7 @@ Need to test something is happening but you don't need to test it every frame? C
         /* you essentially flipped the x-axis: 1 became -1 and vice versa*/
 
     }
-    private IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        anim.SetBool("IsDashing", true);
-        rb.gravityScale = 0f;
-        rb.linearVelocity = new Vector2(transform.localScale.x * dashVelocity, 0f);
-        yield return new WaitForSeconds(dashTime);
 
-        rb.gravityScale = defaultGravityScale;
-        isDashing = false;
-        anim.SetBool("IsDashing", false);
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
-
-    }
     void OnDrawGizmos()
     {
         if (groundCheck != null)

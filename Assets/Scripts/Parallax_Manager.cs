@@ -1,4 +1,5 @@
 
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class ParallaxManager : MonoBehaviour
@@ -13,21 +14,23 @@ public class ParallaxManager : MonoBehaviour
     public ParallaxLayer[] layers;
     public Transform camTransform;
     private Vector3 cameraLastPosition;
-    private bool isFirstFrame = true;
+    
     void Start()
     { 
         cameraLastPosition = camTransform.position;
     }
 
-
-    void LateUpdate()
+    void OnEnable() //used for sobscribing
     {
-        if (isFirstFrame)
-        {
-            cameraLastPosition = camTransform.position;
-            isFirstFrame = false;
-            return;
-        }
+        CinemachineCore.CameraUpdatedEvent.AddListener(OnCameraUpdated); //asking cinemachine to call OnCameraUpdated wheenver it updates its cameras coordinates.
+    }
+    void OnDisable()
+    {
+        CinemachineCore.CameraUpdatedEvent.RemoveListener(OnCameraUpdated); //removing is neccessary otherwise Cinemachine Brain will try to call OnCameraUpdated which doesnt exist->ERRORS
+    }
+    void OnCameraUpdated(CinemachineBrain brain)
+    {
+ 
         Vector3 camDelta = camTransform.position - cameraLastPosition;
 
         foreach (ParallaxLayer layer in layers  )
