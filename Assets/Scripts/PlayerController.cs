@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
     private float horizontalInput;
     private bool jumpRequested;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool isfacingRight = true;
     public int CurrentHealth { get; private set; } //get-> make the getter public. priv set-> private setter. C# automatically creates the getters/ setters.
 

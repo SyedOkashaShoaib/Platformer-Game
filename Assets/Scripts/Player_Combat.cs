@@ -33,11 +33,12 @@ public class Player_Combat : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             timeSinceLastStroke = 0;
             ExecuteAttack();
         }
+
     }
     private void ExecuteAttack()
     {
@@ -59,7 +60,7 @@ public class Player_Combat : MonoBehaviour
         yield return new WaitForSeconds(lungeDuration);
 
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-    }
+    }   
     public void FinishAttackState()
     {
         playerController.isAttacking = false;
