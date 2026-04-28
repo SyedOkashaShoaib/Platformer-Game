@@ -21,7 +21,7 @@ public class Attack_Damege : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit!");
-            other.GetComponent<Player_stats>()?.TakeDamage(damage);
+            other.GetComponent<PlayerController>()?.TakeDamage(damage);
         }
     }
 }
