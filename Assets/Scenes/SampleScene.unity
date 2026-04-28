@@ -4519,7 +4519,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.202876, y: 3.6991928, z: -10}
+  m_LocalPosition: {x: -10.179779, y: 3.6976964, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4771,7 +4771,7 @@ Transform:
   m_GameObject: {fileID: 599723408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.889153, y: 3.6743684, z: -10}
+  m_LocalPosition: {x: -23.903202, y: 3.6743684, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5111,26 +5111,14 @@ GameObject:
   - component: {fileID: 889783569}
   - component: {fileID: 889783568}
   - component: {fileID: 889783567}
-  - component: {fileID: 889783566}
-  m_Layer: 0
+  - component: {fileID: 889783571}
+  m_Layer: 3
   m_Name: Panda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &889783566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889783565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70aab5c85fbab124fac8a2f288486221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
 --- !u!70 &889783567
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5165,8 +5153,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.024358988, y: -1.5544734}
-  m_Size: {x: 1.0370498, y: 1.2155123}
+  m_Offset: {x: 0.024358988, y: -1.0524265}
+  m_Size: {x: 1.0370498, y: 2.2196062}
   m_Direction: 0
 --- !u!50 &889783568
 Rigidbody2D:
@@ -5269,6 +5257,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &889783571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889783565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c96ec0b27a5812438765d175dd046a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
 --- !u!1 &1016718707
 GameObject:
   m_ObjectHideFlags: 0
@@ -5327,6 +5327,37 @@ Transform:
   - {fileID: 599723411}
   - {fileID: 2076574347}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1113040916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1113040917}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1113040917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113040916}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2, y: -0.331, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 267120851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1397869736
 GameObject:
@@ -5813,6 +5844,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1610752826009981912, guid: 4b4fc296280c4284caaf029fdefca887, type: 3}
+      propertyPath: lungeForce
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610752826009981912, guid: 4b4fc296280c4284caaf029fdefca887, type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 1113040917}
+    - target: {fileID: 1610752826009981912, guid: 4b4fc296280c4284caaf029fdefca887, type: 3}
+      propertyPath: attackRange
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1610752826009981912, guid: 4b4fc296280c4284caaf029fdefca887, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1880865351598521426, guid: 4b4fc296280c4284caaf029fdefca887, type: 3}
       propertyPath: m_Name
       value: Knight_Chan
@@ -5867,7 +5914,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4228921092717467214, guid: 4b4fc296280c4284caaf029fdefca887, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1113040917}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b4fc296280c4284caaf029fdefca887, type: 3}
 --- !u!1660057539 &9223372036854775807

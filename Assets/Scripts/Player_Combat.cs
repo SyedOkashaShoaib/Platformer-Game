@@ -14,6 +14,9 @@ public class Player_Combat : MonoBehaviour
     [SerializeField] private float lungeForce = 0f;
     [SerializeField] private float lungeDuration = 0.15f;
 
+    [SerializeField] private Transform attackPoint; 
+    [SerializeField] private    float attackRange = 0.8f;
+    [SerializeField] private LayerMask enemyLayer;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -54,6 +57,19 @@ public class Player_Combat : MonoBehaviour
         StartCoroutine(AttackLunge());
     }
 
+    public void TriggerMeleeHitbox()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            EnemyHealth healthScript = enemy.GetComponent<EnemyHealth>();
+            
+            if (healthScript != null)
+            {
+                healthScript.TakeDamage(25); 
+            }
+        }
+    }
     private IEnumerator AttackLunge()
     {
         rb.linearVelocity = new Vector2(transform.localScale.x * lungeForce, rb.linearVelocity.y);
